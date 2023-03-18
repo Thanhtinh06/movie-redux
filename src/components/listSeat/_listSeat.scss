@@ -1,0 +1,75 @@
+.list-seat {
+  margin-top: $mg-1;
+  .intro {
+    list-style: none;
+    display: flex;
+    li {
+      margin-right: $mg-2;
+      color: white;
+      padding: 0 $pd-1;
+      &.smallBox {
+          &::before {
+            content: "";
+            width: 15px;
+            height: 15px;
+            display: block;
+          }
+        }
+      &.greenBox{
+        &::before {
+          background-color: green;
+        }
+      }
+      &.redBox{
+        &::before {
+          background-color: red;
+        }
+      }
+      &.whiteBox {
+        &::before {
+          background-color: white;
+          border: 1.5px solid $color-orange;
+        }
+      }
+      }
+    }
+  .choose-seat {
+    color: white;
+    font-weight: 700;
+    display: flex;
+    flex-direction: column;
+    flex-wrap: wrap;
+    gap: 15px;
+    .start-choose {
+      background-color: $color-orange;
+      text-align: center;
+    }
+    thead,tbody {
+      width: 100%;
+      tr {
+        display: flex;
+        justify-content: space-evenly;
+        td{
+          width: 20px;
+        }
+        th {
+          width: 35px;
+          padding-left: 15px;
+          text-align: center;
+        }
+      }
+    }
+    .show-seat {
+      display: flex;
+      flex-direction: column;
+      flex-wrap: wrap;
+      gap: 15px;
+      justify-content: space-evenly;
+      text-align: center;
+    }
+    .row-seat {
+      display: flex;
+      justify-content: space-evenly;
+    }
+  }
+}

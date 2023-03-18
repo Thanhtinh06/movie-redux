@@ -1,0 +1,294 @@
+.main {
+  font-family: "Source Sans Pro", sans-serif;
+  background-image: url("../assets/background/bg-movie.jpeg");
+  width: 100vw;
+  background-position: bottom center;
+}
+.main .body {
+  background: rgba(128, 128, 128, 0.34);
+  filter: blur(5%);
+  width: 50%;
+  padding: 3.125rem 2.5rem;
+}
+.main .screen {
+  background-color: #ff9800;
+  padding: 1rem 2.5rem;
+  text-align: center;
+  font-weight: bold;
+  margin-top: 1rem;
+}
+.main .screen p {
+  letter-spacing: 3px;
+  font-size: 20px;
+  margin: 0;
+}
+.main .btn-confirm {
+  margin-top: 2rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+header {
+  padding: 3.125rem 0;
+}
+header h1 {
+  color: white;
+  font-weight: bold;
+  text-align: center;
+}
+
+.form h2 {
+  color: #ff9800;
+  text-transform: capitalize;
+  font-size: 1rem;
+  letter-spacing: 0.5px;
+  line-height: 1.7;
+}
+
+.btn-main {
+  border: none;
+  border-radius: 10px;
+  padding: 5px 1rem;
+  font-weight: 700;
+}
+
+.list-seat {
+  margin-top: 1rem;
+}
+.list-seat .intro {
+  list-style: none;
+  display: flex;
+}
+.list-seat .intro li {
+  margin-right: 2rem;
+  color: white;
+  padding: 0 1rem;
+}
+.list-seat .intro li.smallBox::before {
+  content: "";
+  width: 15px;
+  height: 15px;
+  display: block;
+}
+.list-seat .intro li.greenBox::before {
+  background-color: green;
+}
+.list-seat .intro li.redBox::before {
+  background-color: red;
+}
+.list-seat .intro li.whiteBox::before {
+  background-color: white;
+  border: 1.5px solid #ff9800;
+}
+.list-seat .choose-seat {
+  color: white;
+  font-weight: 700;
+  display: flex;
+  flex-direction: column;
+  flex-wrap: wrap;
+  gap: 15px;
+}
+.list-seat .choose-seat .start-choose {
+  background-color: #ff9800;
+  text-align: center;
+}
+.list-seat .choose-seat thead, .list-seat .choose-seat tbody {
+  width: 100%;
+}
+.list-seat .choose-seat thead tr, .list-seat .choose-seat tbody tr {
+  display: flex;
+  justify-content: space-evenly;
+}
+.list-seat .choose-seat thead tr td, .list-seat .choose-seat tbody tr td {
+  width: 20px;
+}
+.list-seat .choose-seat thead tr th, .list-seat .choose-seat tbody tr th {
+  width: 35px;
+  padding-left: 15px;
+  text-align: center;
+}
+.list-seat .choose-seat .show-seat {
+  display: flex;
+  flex-direction: column;
+  flex-wrap: wrap;
+  gap: 15px;
+  justify-content: space-evenly;
+  text-align: center;
+}
+.list-seat .choose-seat .row-seat {
+  display: flex;
+  justify-content: space-evenly;
+}
+
+.listTicket {
+  margin-top: 2rem;
+}
+.listTicket table {
+  display: table;
+  border-collapse: separate;
+  border-spacing: 2px;
+  border-color: grey;
+  width: 100%;
+  background-color: transparent;
+  text-align: center;
+}
+.listTicket table thead, .listTicket table tbody {
+  padding: 1rem;
+}
+.listTicket table thead tr, .listTicket table tbody tr {
+  background-color: transparent;
+}
+.listTicket table thead tr th, .listTicket table thead tr td, .listTicket table tbody tr th, .listTicket table tbody tr td {
+  background-color: white;
+}
+
+.group-input {
+  display: flex;
+  justify-content: space-between;
+  margin: 2rem 0;
+}
+.group-input label {
+  width: 50%;
+  color: white;
+  font-weight: bold;
+}
+.group-input label span {
+  color: red;
+}
+.group-input label input {
+  margin: 0.4rem;
+  background-color: transparent;
+  border: 1.5px solid rgba(128, 128, 128, 0.629);
+  color: white;
+}
+.group-input label input#seat {
+  width: 30%;
+}
+.group-input label input#name {
+  width: 60%;
+}
+
+.form h2 {
+  color: #ff9800;
+  text-transform: capitalize;
+  font-size: 1rem;
+  letter-spacing: 0.5px;
+  line-height: 1.7;
+}
+
+.list-seat {
+  margin-top: 1rem;
+}
+.list-seat .intro {
+  list-style: none;
+  display: flex;
+}
+.list-seat .intro li {
+  margin-right: 2rem;
+  color: white;
+  padding: 0 1rem;
+}
+.list-seat .intro li.smallBox::before {
+  content: "";
+  width: 15px;
+  height: 15px;
+  display: block;
+}
+.list-seat .intro li.greenBox::before {
+  background-color: green;
+}
+.list-seat .intro li.redBox::before {
+  background-color: red;
+}
+.list-seat .intro li.whiteBox::before {
+  background-color: white;
+  border: 1.5px solid #ff9800;
+}
+.list-seat .choose-seat {
+  color: white;
+  font-weight: 700;
+  display: flex;
+  flex-direction: column;
+  flex-wrap: wrap;
+  gap: 15px;
+}
+.list-seat .choose-seat .start-choose {
+  background-color: #ff9800;
+  text-align: center;
+}
+.list-seat .choose-seat thead, .list-seat .choose-seat tbody {
+  width: 100%;
+}
+.list-seat .choose-seat thead tr, .list-seat .choose-seat tbody tr {
+  display: flex;
+  justify-content: space-evenly;
+}
+.list-seat .choose-seat thead tr td, .list-seat .choose-seat tbody tr td {
+  width: 20px;
+}
+.list-seat .choose-seat thead tr th, .list-seat .choose-seat tbody tr th {
+  width: 35px;
+  padding-left: 15px;
+  text-align: center;
+}
+.list-seat .choose-seat .show-seat {
+  display: flex;
+  flex-direction: column;
+  flex-wrap: wrap;
+  gap: 15px;
+  justify-content: space-evenly;
+  text-align: center;
+}
+.list-seat .choose-seat .row-seat {
+  display: flex;
+  justify-content: space-evenly;
+}
+
+.seat {
+  width: 35px;
+  height: 25px;
+  box-shadow: 0px 2px 2px rgba(0, 0, 0, 0.3);
+  border-radius: 5px;
+  border: 2px solid orange;
+  text-align: center;
+  align-self: center;
+}
+.seat:focus {
+  background-color: green;
+}
+.seat.checked {
+  background-color: green;
+}
+.seat.reserved {
+  background-color: red;
+}
+
+.listTicket {
+  margin-top: 2rem;
+}
+.listTicket table {
+  display: table;
+  border-collapse: separate;
+  border-spacing: 2px;
+  border-color: grey;
+  width: 100%;
+  background-color: transparent;
+  text-align: center;
+}
+.listTicket table thead, .listTicket table tbody {
+  padding: 1rem;
+}
+.listTicket table thead tr, .listTicket table tbody tr {
+  background-color: transparent;
+}
+.listTicket table thead tr th, .listTicket table thead tr td, .listTicket table tbody tr th, .listTicket table tbody tr td {
+  background-color: white;
+}
+
+footer {
+  color: white;
+  text-align: center;
+  padding: 2.5rem 0;
+  font-weight: bold;
+}/*# sourceMappingURL=style.css.map */

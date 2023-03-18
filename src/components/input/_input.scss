@@ -1,0 +1,25 @@
+.group-input {
+  display: flex;
+  justify-content: space-between;
+  margin: $mg-2 0;
+  label {
+    width: 50%;
+    color: $color-white;
+    font-weight: bold;
+    span {
+      color: red;
+    }
+    input {
+      margin: $mg-0;
+      background-color: transparent;
+      border: 1.5px solid $color-form;
+      color: white;
+      &#seat{
+        width: 30%;
+      }
+      &#name {
+        width: 60%;
+      }
+    }
+  }
+}

@@ -1,0 +1,22 @@
+.listTicket {
+  margin-top: $mg-2;
+  table{
+    display: table;
+    border-collapse: separate;
+    border-spacing: 2px;
+    border-color: grey;
+    width: 100%;
+    background-color: transparent;
+    text-align: center;
+    thead,tbody{
+      padding: $pd-1;
+      tr{
+        background-color: transparent;
+        th,td {
+          background-color: $color-white;
+        }
+      }
+    }
+
+  }
+}
