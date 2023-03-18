@@ -1,35 +1,25 @@
 import React, { Component } from "react";
 import "./../../css/style.css";
 import { connect } from "react-redux";
+import clsx from "clsx";
+import { actChooseSeat } from "../duck/action";
 
 class Seat extends Component {
-  state = { isActive: false };
-
-  handleToggle = () => {
-    this.setState({ isActive: !this.state.isActive });
-  };
 
   render() {
-    const { value, handlerChoose, isReserved,startOrder } = this.props;
-    const isActive = this.state.isActive;
-    if (isReserved) {
-      return (
-        <input type="button" value={value.soGhe} className="seat reserved" />
-      );
-    }
-    // if(statusBtnConfirm){
-    //   this.setState({isActive: false})
-    // }
+    const { value, handlerChoose,chooseSeats } = this.props;
     return (
       <input
         type="button"
         value={value.soGhe}
-        className={isActive ? "seat checked" : "seat"}
-        disabled ={startOrder ? false : true}
-        onFocus={() => {
+        className = {clsx('seat',{
+          checked : chooseSeats.find((item) => item.soGhe === value.soGhe),
+          reserved : value.daDat
+        })}
+        disabled ={value.daDat}
+        onClick={() => {
           handlerChoose(value);
         }}
-        onClick={this.handleToggle}
       />
     );
   }
@@ -37,21 +27,15 @@ class Seat extends Component {
 
 const mapStateToProps = (state) => {
   return {
-    user: state.reducerMovie.user,
-    startOrder : state.reducerMovie.startOrder,
-    statusBtnConfirm : state.reducerMovie.statusBtnConfirm
-
+    statusBtnConfirm : state.reducerMovie.statusBtnConfirm,
+    chooseSeats : state.reducerMovie.chooseSeats
   };
 };
 
 const mapDispatchToProps = (dispatch) => {
   return {
-    handlerChoose: (value) => {
-      const action = {
-        type: "CHOOSE_SEAT",
-        value,
-      };
-      dispatch(action);
+    handlerChoose: (seat) => {
+      dispatch(actChooseSeat(seat));
     },
   };
 };

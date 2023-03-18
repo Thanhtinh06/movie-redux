@@ -6,6 +6,7 @@ import ListTick from "../order/ListTick";
 import "./../../css/style.css";
 import Footer from "../footer/Footer";
 import { connect } from "react-redux";
+import { actComfirmSeletion } from "../duck/action";
 
 class Home extends Component {
   render() {
@@ -20,7 +21,7 @@ class Home extends Component {
             <p>SCREEN THIS WAY</p>
           </div>
           <div className="btn-confirm">
-            <button className="btn-main" onClick={() => this.props.confirm()} disabled={statusBtnConfirm}>
+            <button className="btn-main" onClick={() => this.props.confirmSeletion()} disabled={statusBtnConfirm}>
               Confirm Selection
             </button>
           </div>
@@ -34,7 +35,6 @@ class Home extends Component {
 
 const mapStateToProps = (state) => {
   return {
-    user: state.reducerMovie.user,
     chooseSeats: state.reducerMovie.chooseSeats,
     statusBtnConfirm : state.reducerMovie.statusBtnConfirm
   };
@@ -42,8 +42,8 @@ const mapStateToProps = (state) => {
 
 const mapDispatchToProps = (dispatch) => {
   return {
-    confirm: () => {
-      dispatch({ type: "CONFIRM_SELECTION" });
+    confirmSeletion: () => {
+      dispatch(actComfirmSeletion());
     },
   };
 };

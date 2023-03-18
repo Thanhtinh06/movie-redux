@@ -1,6 +1,6 @@
 import dataSeat from "./../../assets/json/danhSachGhe.json";
-
-const stateMovie = {
+import { CHOOSE_SEAT, CONFIRM_SELECTION, REMOVE_TICKET, TAKE_INFOR } from "./type";
+const initialSate = {
   listSeat: dataSeat,
   user: {
     name: "",
@@ -16,33 +16,40 @@ const stateMovie = {
     },
   ],
   chooseSeats: [],
-  startOrder: false,
-  statusBtnConfirm : false,
+  statusBtnConfirm: false,
 };
 
-export const reducerMovie = (state = stateMovie, action) => {
-  const findSeat =  (target) => {
-    let listSeatClone = [...state.listSeat]
-    for(let row of listSeatClone){
-      for(let seat_row of row.danhSachGhe){
-        if(seat_row === target){
-          let index = row.danhSachGhe.findIndex((seat_row) => seat_row === target);
-          row.danhSachGhe[index] = changeStatusSeat(target);
+export const reducerMovie = (state = initialSate, action) => {
+  const findSeat = (target, isReverved) => {
+    let listSeatClone = [...state.listSeat];
+    for (let row of listSeatClone) {
+      for (let seat_row of row.danhSachGhe) {
+        if (seat_row === target) {
+          let index = row.danhSachGhe.findIndex(
+            (seat_row) => seat_row === target
+          );
+          row.danhSachGhe[index] = changeStatusSeat(target, isReverved);
         }
       }
     }
-    return listSeatClone
-  }
-  const changeStatusSeat = (seat) => {
-    return {soGhe:seat.soGhe,gia:0,daDat:true}
-  }
-     
+    return listSeatClone;
+  };
+
+  const changeStatusSeat = (seat, isReverved) => {
+    if (isReverved) {
+      return { soGhe: seat.soGhe, gia: 0, daDat: true };
+    } else {
+      return { soGhe: seat.soGhe, gia: 75000, daDat: false };
+    }
+  };
+
   const confirm = () => {
     let listChooseSeat = [...state.chooseSeats];
     let updateListTicket = [...state.listTicket];
     let seats = listChooseSeat.map((seat) => {
       return seat.soGhe;
     });
+    let prices = 75000;
     let total = listChooseSeat.reduce((total, seat) => {
       return (total += seat.gia);
     }, 0);
@@ -51,7 +58,7 @@ export const reducerMovie = (state = stateMovie, action) => {
         name: state.user.name,
         numberSeats: state.user.numberSeats,
         seats: seats,
-        price: 75000,
+        price: prices,
         total: total,
       };
       updateListTicket.push(ticketNew);
@@ -66,59 +73,64 @@ export const reducerMovie = (state = stateMovie, action) => {
     }
     return listTicketNew;
   };
-  
+
   switch (action.type) {
-    case "TAKE_INFOR":
+    case TAKE_INFOR:
       let updateUser = { ...state.user };
       updateUser = action.user;
-      return { ...state, user: updateUser, startOrder: true, statusBtnConfirm: false };
+      return {
+        ...state,
+        user: updateUser,
+        statusBtnConfirm: false,
+      };
 
-    case "CHOOSE_SEAT":
+    case CHOOSE_SEAT:
       let updateChooseSeats = [...state.chooseSeats];
-      let index = updateChooseSeats.findIndex(
-        (seat) => seat === action.value
-      );
+      let index = updateChooseSeats.findIndex((seat) => seat === action.seat);
       if (
         updateChooseSeats.length < state.user.numberSeats &&
-        state.user.numberSeats !== 0 && index === -1
+        state.user.numberSeats !== 0 &&
+        index === -1
       ) {
-          updateChooseSeats.push(action.value);
-      } else if (index !== -1){
-        updateChooseSeats.splice(index,1);
+        updateChooseSeats.push(action.seat);
+      } else if (index !== -1) {
+        updateChooseSeats.splice(index, 1);
       } else {
-        state.startOrder = false;
+        alert("Your seats are enough, please confim seletion!!!")
       }
       return {
         ...state,
         chooseSeats: updateChooseSeats,
-        startOrder: state.startOrder,
       };
-    case "CONFIRM_SELECTION":
-      let newListSeat = [...state.listSeat]
+
+    case CONFIRM_SELECTION:
+      let newListSeat = [...state.listSeat];
       let updateListTicket = [...state.listTicket];
       let resetConfirm = false;
-      if(state.chooseSeats.length.toString() === state.user.numberSeats){
+      if (state.chooseSeats.length.toString() === state.user.numberSeats) {
         updateListTicket = confirm();
         resetConfirm = true;
-        for(let seat of state.chooseSeats){
-          newListSeat = findSeat(seat)
+        for (let seat of state.chooseSeats) {
+          newListSeat = findSeat(seat, true);
         }
-      }else{
-        alert(`Please select ${state.user.numberSeats} seats`)
+      } else {
+        alert(`Please select ${state.user.numberSeats} seats`);
       }
       return {
         ...state,
         listTicket: updateListTicket,
-        statusBtnConfirm :resetConfirm,
-        listSeat : newListSeat,
-        chooseSeats : []
-      }
-      
-    case "REMOVE_TICKET":
+        statusBtnConfirm: resetConfirm,
+        listSeat: newListSeat,
+        chooseSeats: [],
+      };
+
+    case REMOVE_TICKET:
+      let updateListSeat = [...state.listSeat];
       let newListTicket = remove(action.ticket);
       return {
         ...state,
         listTicket: newListTicket,
+        listSeat: updateListSeat,
       };
 
     default:

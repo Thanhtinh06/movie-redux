@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
+import { actTakeInfor } from "../duck/action";
 import Input from "../input/Input";
 import "./../../css/style.css";
 
@@ -43,11 +44,7 @@ class Form extends Component {
 const mapDispatchToProps = (dispatch) => {
   return {
     takeInfor : (user) => {
-      const action = {
-        type: "TAKE_INFOR", 
-        user
-      };
-      dispatch(action)
+      dispatch(actTakeInfor(user))
     }
   }
 }

@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
+import { actRemoveTicket } from "../duck/action";
 
 class Ticket extends Component {
   render() {
@@ -24,11 +25,7 @@ class Ticket extends Component {
 const mapDispatchToProps = (dispatch) =>{
   return {
     removeTicket : (ticket) => {
-      const action = {
-        type : "REMOVE_TICKET",
-        ticket,
-      }
-      dispatch(action)
+      dispatch(actRemoveTicket(ticket))
     }
   }
 }
