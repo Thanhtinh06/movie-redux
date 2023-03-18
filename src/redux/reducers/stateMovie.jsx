@@ -17,9 +17,26 @@ const stateMovie = {
   ],
   chooseSeats: [],
   startOrder: false,
+  statusBtnConfirm : false,
 };
 
 export const reducerMovie = (state = stateMovie, action) => {
+  const findSeat =  (target) => {
+    let listSeatClone = [...state.listSeat]
+    for(let row of listSeatClone){
+      for(let seat_row of row.danhSachGhe){
+        if(seat_row === target){
+          let index = row.danhSachGhe.findIndex((seat_row) => seat_row === target);
+          row.danhSachGhe[index] = changeStatusSeat(target);
+        }
+      }
+    }
+    return listSeatClone
+  }
+  const changeStatusSeat = (seat) => {
+    return {soGhe:seat.soGhe,gia:0,daDat:true}
+  }
+     
   const confirm = () => {
     let listChooseSeat = [...state.chooseSeats];
     let updateListTicket = [...state.listTicket];
@@ -49,11 +66,12 @@ export const reducerMovie = (state = stateMovie, action) => {
     }
     return listTicketNew;
   };
+  
   switch (action.type) {
     case "TAKE_INFOR":
       let updateUser = { ...state.user };
       updateUser = action.user;
-      return { ...state, user: updateUser, startOrder: true };
+      return { ...state, user: updateUser, startOrder: true, statusBtnConfirm: false };
 
     case "CHOOSE_SEAT":
       let updateChooseSeats = [...state.chooseSeats];
@@ -76,13 +94,24 @@ export const reducerMovie = (state = stateMovie, action) => {
         startOrder: state.startOrder,
       };
     case "CONFIRM_SELECTION":
+      let newListSeat = [...state.listSeat]
       let updateListTicket = [...state.listTicket];
+      let resetConfirm = false;
       if(state.chooseSeats.length.toString() === state.user.numberSeats){
         updateListTicket = confirm();
+        resetConfirm = true;
+        for(let seat of state.chooseSeats){
+          newListSeat = findSeat(seat)
+        }
+      }else{
+        alert(`Please select ${state.user.numberSeats} seats`)
       }
       return {
         ...state,
         listTicket: updateListTicket,
+        statusBtnConfirm :resetConfirm,
+        listSeat : newListSeat,
+        chooseSeats : []
       }
       
     case "REMOVE_TICKET":

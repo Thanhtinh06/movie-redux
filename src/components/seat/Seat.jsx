@@ -17,6 +17,9 @@ class Seat extends Component {
         <input type="button" value={value.soGhe} className="seat reserved" />
       );
     }
+    // if(statusBtnConfirm){
+    //   this.setState({isActive: false})
+    // }
     return (
       <input
         type="button"
@@ -35,7 +38,8 @@ class Seat extends Component {
 const mapStateToProps = (state) => {
   return {
     user: state.reducerMovie.user,
-    startOrder : state.reducerMovie.startOrder
+    startOrder : state.reducerMovie.startOrder,
+    statusBtnConfirm : state.reducerMovie.statusBtnConfirm
 
   };
 };

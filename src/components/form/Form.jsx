@@ -1,6 +1,5 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
-import Button from "../button/Button";
 import Input from "../input/Input";
 import "./../../css/style.css";
 
@@ -33,7 +32,7 @@ class Form extends Component {
         <h2>Fill The Required Details Below And Select Your Seats</h2>
         <form onSubmit={this.handerSubmitEvent}>
           <Input refName={this.inputRefName} refSeats={this.inputRefSeats}/>
-          <Button value={"Start Selecting"} type="submit" />
+          <button className="btn-main" type="submit">Start Selecting</button>
         </form>
       </div>
     );

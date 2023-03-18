@@ -1,7 +1,6 @@
 import React, { Component } from "react";
 import Header from "../header/Header";
 import ListSeat from "../listSeat/ListSeat";
-import Button from "../button/Button";
 import Form from "../form/Form";
 import ListTick from "../order/ListTick";
 import "./../../css/style.css";
@@ -9,9 +8,8 @@ import Footer from "../footer/Footer";
 import { connect } from "react-redux";
 
 class Home extends Component {
-
-
   render() {
+    const {statusBtnConfirm} = this.props
     return (
       <div className="main">
         <Header />
@@ -21,8 +19,10 @@ class Home extends Component {
           <div className="screen">
             <p>SCREEN THIS WAY</p>
           </div>
-          <div className="btn-confirm"> 
-          <Button value={"Confirm Selection"} handlerClick={this.props.confirm} />
+          <div className="btn-confirm">
+            <button className="btn-main" onClick={() => this.props.confirm()} disabled={statusBtnConfirm}>
+              Confirm Selection
+            </button>
           </div>
           <ListTick />
         </div>
@@ -35,9 +35,10 @@ class Home extends Component {
 const mapStateToProps = (state) => {
   return {
     user: state.reducerMovie.user,
-    chooseSeats: state.reducerMovie.chooseSeats
-  }
-}
+    chooseSeats: state.reducerMovie.chooseSeats,
+    statusBtnConfirm : state.reducerMovie.statusBtnConfirm
+  };
+};
 
 const mapDispatchToProps = (dispatch) => {
   return {
@@ -46,7 +47,5 @@ const mapDispatchToProps = (dispatch) => {
     },
   };
 };
-
-
 
 export default connect(mapStateToProps, mapDispatchToProps)(Home);
