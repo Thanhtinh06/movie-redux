@@ -254,7 +254,7 @@ header h1 {
   align-self: center;
 }
 .seat:focus {
-  background-color: green;
+  background-color: white;
 }
 .seat.checked {
   background-color: green;

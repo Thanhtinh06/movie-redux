@@ -6,6 +6,8 @@ import { actChooseSeat } from "../duck/action";
 
 class Seat extends Component {
 
+  
+
   render() {
     const { value, handlerChoose,chooseSeats } = this.props;
     return (
@@ -14,7 +16,7 @@ class Seat extends Component {
         value={value.soGhe}
         className = {clsx('seat',{
           checked : chooseSeats.find((item) => item.soGhe === value.soGhe),
-          reserved : value.daDat
+          reserved : value.daDat,
         })}
         disabled ={value.daDat}
         onClick={() => {

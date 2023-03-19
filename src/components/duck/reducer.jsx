@@ -1,5 +1,10 @@
 import dataSeat from "./../../assets/json/danhSachGhe.json";
-import { CHOOSE_SEAT, CONFIRM_SELECTION, REMOVE_TICKET, TAKE_INFOR } from "./type";
+import {
+  CHOOSE_SEAT,
+  CONFIRM_SELECTION,
+  REMOVE_TICKET,
+  TAKE_INFOR,
+} from "./type";
 const initialSate = {
   listSeat: dataSeat,
   user: {
@@ -96,7 +101,7 @@ export const reducerMovie = (state = initialSate, action) => {
       } else if (index !== -1) {
         updateChooseSeats.splice(index, 1);
       } else {
-        alert("Your seats are enough, please confim seletion!!!")
+        alert("Your seats are enough, please confim seletion!!!");
       }
       return {
         ...state,
@@ -125,12 +130,33 @@ export const reducerMovie = (state = initialSate, action) => {
       };
 
     case REMOVE_TICKET:
-      let updateListSeat = [...state.listSeat];
+      
       let newListTicket = remove(action.ticket);
+      const listAfterRemove = newListTicket.map((ticket) => {
+        return ticket.seats.map((seat) => {
+          return seat;
+        });
+      })
+      .flat();
+      
+
+      const data = state.listSeat.map((item) => {
+        const newSeat = item.danhSachGhe.map((seat) => {
+          if (!listAfterRemove.includes(seat.soGhe)) {
+            seat.daDat = false;
+          }
+          return seat;
+        });
+        return {
+          ...item,
+          danhSachGhe: newSeat,
+        };
+      });
+
       return {
         ...state,
         listTicket: newListTicket,
-        listSeat: updateListSeat,
+        listSeat: data,
       };
 
     default:
